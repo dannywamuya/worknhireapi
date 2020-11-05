@@ -9,7 +9,6 @@ mainClassName = 'App'
 applicationName = 'worknhireapi'
 
 sourceCompatibility = 1.8
-task stage(dependsOn: ['clean', 'installDist'])
 
 repositories {
     mavenCentral()
@@ -23,3 +22,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.5'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
 }
+
+task stage(dependsOn: ['clean', 'installApp'])
