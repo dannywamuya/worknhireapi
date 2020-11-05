@@ -23,4 +23,4 @@ dependencies {
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
 }
 
-task stage(dependsOn: ['clean', 'installApp'])
+task stage(dependsOn: ['clean', 'installDist'])
