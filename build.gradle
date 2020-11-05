@@ -10,7 +10,7 @@ applicationName = 'worknhireapi'
 
 sourceCompatibility = 1.8
 
-task stage(dependsOn: ['clean', 'installApp'])
+task stage(dependsOn: ['clean', 'installDist'])
 
 repositories {
     mavenCentral()
