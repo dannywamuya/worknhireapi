@@ -1,11 +1,15 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'worknhireapi'
 version '1.0-SNAPSHOT'
+mainClassName = 'App'
+applicationName = 'worknhireapi'
 
 sourceCompatibility = 1.8
+task stage(dependsOn: ['clean', 'installDist'])
 
 repositories {
     mavenCentral()
@@ -18,5 +22,4 @@ dependencies {
     compile 'org.sql2o:sql2o:1.5.4'
     compile 'com.google.code.gson:gson:2.5'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
-    compile group: 'com.h2database', name: 'h2', version: '1.4.191'
 }
