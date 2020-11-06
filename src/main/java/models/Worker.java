@@ -1,6 +1,12 @@
 package models;
 
+import org.sql2o.Connection;
+import org.sql2o.Sql2oException;
+
+import java.util.List;
 import java.util.Objects;
+
+import static models.DB.sql2o;
 
 public class Worker {
     private int id;
@@ -16,6 +22,76 @@ public class Worker {
         this.experience = experience;
         this.email = email;
         this.phone = phone;
+    }
+
+    public void add() {
+        try (Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO workers (name, skill, experience, email, phone) VALUES (:name,  :skill, :experience, :email, :phone)";
+            this.id = (int) con.createQuery(sql, true)
+                    .addParameter("name", this.name)
+                    .addParameter("skill", this.skill)
+                    .addParameter("experience", this.experience)
+                    .addParameter("email", this.email)
+                    .addParameter("phone", this.phone)
+                    .executeUpdate()
+                    .getKey();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public List<Worker> getAll() {
+        try (Connection con = DB.sql2o.open()) {
+            return con.createQuery("SELECT * FROM workers;")
+                    .throwOnMappingFailure(false)
+                    .executeAndFetch(Worker.class);
+        }
+    }
+
+    public Worker findById(int id) {
+        try (Connection con = DB.sql2o.open()) {
+            return con.createQuery("SELECT * FROM workers WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Worker.class);
+        }
+    }
+
+    public static void update(int id, String name, String skill, int experience, String email, String phone) {
+        String sql = "UPDATE workers SET (name, skill, experience, email, phone) = (:name, :skill, :experience, :email, :phone) WHERE id = :id";
+        try (Connection con = DB.sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .addParameter("name", name)
+                    .addParameter("email", email)
+                    .addParameter("phone", phone)
+                    .addParameter("skill", skill)
+                    .addParameter("experience", experience)
+                    .throwOnMappingFailure(false)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public void deleteById() {
+        try (Connection con = DB.sql2o.open()) {
+            String sql = "DELETE from workers WHERE id = :id";
+            con.createQuery(sql)
+                    .addParameter("id", this.id)
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
+    public void deleteAll() {
+        String sql = "DELETE from workers";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
     }
 
     public int getId() { return id; }
