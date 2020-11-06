@@ -66,7 +66,7 @@ Update Worker
 Listing Worker
 - https://worknhireapi.herokuapp.com/jobdetails/update/:id
 ```
-#####[View more routes and exceptions](https://github.com/dannywamuya/worknhireapi/blob/danny/src/main/java/App.java)
+##### [View more routes and exceptions](https://github.com/dannywamuya/worknhireapi/blob/danny/src/main/java/App.java)
 
 ## Support and contact details
 If you come across any issues, reach me at dwamuya@gmail.com or comment on the issue via GitHub. 
