@@ -25,7 +25,7 @@ public class DB {
             String host = dbUri.getHost();
             String path = dbUri.getPath();
             String username = (dbUri.getUserInfo() == null) ? "danny" : dbUri.getUserInfo().split(":")[0];
-            String password = (dbUri.getUserInfo() == null) ? "hu8jmn3" : dbUri.getUserInfo().split(":")[1];
+            String password = (dbUri.getUserInfo() == null) ? "password" : dbUri.getUserInfo().split(":")[1];
 //            sql2o = new Sql2o("jdbc:postgresql://" + host + ":" + port + path, username, password);
             String connectionString = "jdbc:postgresql://ec2-52-207-124-89.compute-1.amazonaws.com:5432/dd0qh15n92qcge";
             sql2o = new Sql2o(connectionString, "sfegzszfdlckdb","9b5d7addca0974b60e7c42589bf53a7ba1b923d595cae79d084e2f2967abaa3c");
