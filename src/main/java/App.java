@@ -22,7 +22,6 @@ public class App {
     }
 
     public static void main(String[] args) {
-
         port(getHerokuAssignedPort());
 
         staticFileLocation("/public");
@@ -305,6 +304,5 @@ public class App {
         after((req, res) ->{
             res.type("application/json");
         });
-
     }
 }
